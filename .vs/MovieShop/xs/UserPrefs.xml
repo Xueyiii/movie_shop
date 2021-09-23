@@ -8,10 +8,17 @@
         <State name="__root__">
           <Node name="MovieShop" expanded="True">
             <Node name="ApplicationCore" expanded="True">
+              <Node name="Entities" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="RepositoryInterfaces" selected="True" />
+              <Node name="RepositoryInterfaces" expanded="True" />
+              <Node name="ServiceInterfaces" expanded="True" />
             </Node>
-            <Node name="Infrastructure" expanded="True" />
+            <Node name="Infrastructure" expanded="True">
+              <Node name="ConnectedServicesFolder" selected="True" />
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Repository" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

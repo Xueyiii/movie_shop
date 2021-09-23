@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApplicationCore.ServiceInterfaces;
+using Infrastructure.Data;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 
 namespace MovieShopMVC
 {
@@ -23,7 +28,15 @@ namespace MovieShopMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Different: .NET Core vs old version .NET framework:
+            // .NEY Core has build in DI support
+            // old .NET Framework did not has build-in DI
+            // we used with 3rd party libraries. Autofac, Ninject
             services.AddControllersWithViews();
+            services.AddScoped<IMovieService, MovieService>();
+            // 3 scopes: AddScoped, AddTransient, AddSingleton
+
+            services.AddDbContext<MovieShopDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

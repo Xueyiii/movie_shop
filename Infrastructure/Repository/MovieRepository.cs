@@ -6,7 +6,7 @@ namespace Infrastructure.Repository
 {
     public class MovieRepository : IMovieRepository
     {
-        public IEnumerable<Movie> Get30HighestGossingMovies()
+        public IEnumerable<Movie> Get30HighestGrossingMovies()
         {
             var movies = new List<Movie>
             {

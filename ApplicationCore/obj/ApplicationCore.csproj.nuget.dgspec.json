@@ -14,7 +14,7 @@
         "outputPath": "/Users/yangxueyi/Projects/movie_shop/ApplicationCore/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/yangxueyi/.config/NuGet/NuGet.Config"
+          "/Users/yangxueyi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100-rc.1.21463.6/RuntimeIdentifierGraph.json"
         }
       }
     }
