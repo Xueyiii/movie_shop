@@ -6,6 +6,6 @@ namespace ApplicationCore.RepositoryInterfaces
 {
     public interface IMovieRepository
     {
-        IEnumerable<Movie> Get30HighestGossingMovies();
+        IEnumerable<Movie> Get30HighestGrossingMovies();
     }
 }

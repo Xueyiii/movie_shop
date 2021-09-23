@@ -27,7 +27,7 @@ namespace MovieShopMVC.Controllers
             // Display top revenue movies
             // get model data
             var movieService = new MovieService();
-            var movies = movieService.Get30HighestGossingMovies();
+            var movies = movieService.Get30HighestGrossingMovies();
             // models
             return View(movies);
         }
