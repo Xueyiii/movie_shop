@@ -1,7 +1,10 @@
 ﻿<Properties StartupConfiguration="{060BBDBE-1FE1-4AC3-8CE4-FFA3E60148B8}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ApplicationCore/Models/MovieCardResponseModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/Data/MovieShopDbContext.cs">
     <Files>
       <File FileName="ApplicationCore/Models/MovieCardResponseModel.cs" Line="1" Column="1" />
+      <File FileName="ApplicationCore/Entities/Movie.cs" />
+      <File FileName="Infrastructure/Data/MovieShopDbContext.cs" Line="56" Column="2" />
+      <File FileName="ApplicationCore/Entities/Genre.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,8 +17,10 @@
               <Node name="ServiceInterfaces" expanded="True" />
             </Node>
             <Node name="Infrastructure" expanded="True">
-              <Node name="ConnectedServicesFolder" selected="True" />
               <Node name="Dependencies" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="MovieShopDbContext.cs" selected="True" />
+              </Node>
               <Node name="Repository" expanded="True" />
               <Node name="Services" expanded="True" />
             </Node>

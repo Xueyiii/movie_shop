@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8WmCO9fdeckj2P/2I7/NNmUnsDAUX93Pt6EF6a8TRRFVLLWRf0L2lpMuk3dyzB9EG0S7+y5raO5YwzJ1iSYgmg==",
+  "dgSpecHash": "DTBcBjNRF31lvsIiVJVsS3ZmJFOT+0wtdj6G2uRT+6UMih4b9lXal9ug3pWSkVSo16FRszRLyB31Ne06zPvZKg==",
   "success": true,
   "projectFilePath": "/Users/yangxueyi/Projects/movie_shop/ApplicationCore/ApplicationCore.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/yangxueyi/.nuget/packages/system.componentmodel.annotations/5.0.0/system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

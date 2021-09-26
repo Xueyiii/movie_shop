@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using ApplicationCore.ServiceInterfaces;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,13 +13,12 @@ namespace MovieShopMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IMovieService _movieService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IMovieService movieService)
         {
-            _logger = logger;
+            _movieService = movieService;
         }
-
         public IActionResult Index()
         {
             // it will look inside view folder => folder name with same name as control name and
@@ -26,9 +26,10 @@ namespace MovieShopMVC.Controllers
 
             // Display top revenue movies
             // get model data
-            var movieService = new MovieService();
-            var movies = movieService.Get30HighestGrossingMovies();
+            // var movieService = new MovieService();
+            // var movies = movieService.Get30HighestGrossingMovies();
             // models
+            var movies = _movieService.Get30HighestGrossingMovies();
             return View(movies);
         }
 
