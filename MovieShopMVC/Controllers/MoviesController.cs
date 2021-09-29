@@ -13,11 +13,19 @@ namespace MovieShopMVC.Controllers
             _movieService = movieService;
         }
         
-        public IActionResult GetTopRevenueMovies()
+        /*public IActionResult GetTopRevenueMovies()
         {
             //var movieService = new MovieService();
             var movies = _movieService.Get30HighestGrossingMovies();
             return View(movies);
+        }*/
+
+        public IActionResult Details(int id)
+        {
+            var movieDetailsResponseModel = _movieService.GetMovieById(id);
+            return View(movieDetailsResponseModel);
         }
+        
+        
     }
 }

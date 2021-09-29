@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace ApplicationCore.Entities
 {
     public class Movie
@@ -23,5 +25,14 @@ namespace ApplicationCore.Entities
         public string CreatedBy { get; set; }
 
         public decimal? Rating { get; set; }
+
+        public ICollection<Trailer> Trailers { get; set; }
+
+        public ICollection<MovieGenre> Genres { get; set; }
+        public ICollection<MovieCast> Casts { get; set; }
+        public ICollection<MovieCrew> Crews { get; set; }
+        public ICollection<Review> Reviews { get; set; }
+        public ICollection<Favorite> Favorites { get; set; }
+        
     }
 }

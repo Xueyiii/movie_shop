@@ -8,6 +8,8 @@ namespace ApplicationCore.ServiceInterfaces
     {
         //models
         IEnumerable<MovieCardResponseModel> Get30HighestGrossingMovies();
+        MovieDetailsResponseModel GetMovieById(int id);
+        IEnumerable<MovieCardResponseModel> GetMoviesByGenre(int genreId);
 
     }
 }
