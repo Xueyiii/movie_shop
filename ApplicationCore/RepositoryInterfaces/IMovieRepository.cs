@@ -7,5 +7,7 @@ namespace ApplicationCore.RepositoryInterfaces
     public interface IMovieRepository
     {
         IEnumerable<Movie> Get30HighestGrossingMovies();
+        Movie GetMovieById(int id);
+        IEnumerable<Movie> GetMoviesByGenre(int genreId);
     }
 }

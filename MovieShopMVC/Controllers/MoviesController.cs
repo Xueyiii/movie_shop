@@ -22,7 +22,10 @@ namespace MovieShopMVC.Controllers
 
         public IActionResult Details(int id)
         {
-            return View();
+            var movieDetailsResponseModel = _movieService.GetMovieById(id);
+            return View(movieDetailsResponseModel);
         }
+        
+        
     }
 }
