@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ApplicationCore.Entities;
 using ApplicationCore.Models;
 using ApplicationCore.RepositoryInterfaces;
@@ -16,9 +17,11 @@ namespace Infrastructure.Services
         {
             _movieRepository = movieRepository;
         }
-        public IEnumerable<MovieCardResponseModel> Get30HighestGrossingMovies()
+        public async Task<IEnumerable<MovieCardResponseModel>>  Get30HighestGrossingMovies()
         {
-            var movies = _movieRepository.Get30HighestGrossingMovies();
+            // list of movie entites 
+            var movies = await _movieRepository.Get30HighestGrossingMovies();
+            //var movies = _movieRepository.Get30HighestGrossingMovies();
             var movieCardResponseModel = new List<MovieCardResponseModel>();
 
             //mapping entities to models data so that services always return models not entities
@@ -31,9 +34,9 @@ namespace Infrastructure.Services
             return movieCardResponseModel;
         }
 
-        public MovieDetailsResponseModel GetMovieById(int id)
+        public async Task<MovieDetailsResponseModel> GetMovieById(int id)
         {
-            var movie = _movieRepository.GetMovieById(id);
+            var movie = await _movieRepository.GetMovieById(id);
             var movieDetailsResponseModel = new MovieDetailsResponseModel();
 
             movieDetailsResponseModel.Id = movie.Id;
@@ -47,19 +50,28 @@ namespace Infrastructure.Services
             movieDetailsResponseModel.Price = movie.Price;
             movieDetailsResponseModel.Budget = movie.Budget;
             
-            movieDetailsResponseModel.Genres = new List<Genre>();
             
             foreach (var movieGenre in movie.Genres)
             {
-                movieDetailsResponseModel.Genres.Add(new Genre{Id = movieGenre.Genre.Id, Name = movieGenre.Genre.Name});
+                movieDetailsResponseModel.Genres.Add(new GenreModel{Id = movieGenre.Genre.Id, Name = movieGenre.Genre.Name});
             }
             
-            movieDetailsResponseModel.Casts = new List<Cast>();
             foreach (var movieCast in movie.Casts)
             {
-                movieDetailsResponseModel.Casts.Add(new Cast{Id = movieCast.Cast.Id, Name = movieCast.Cast.Name, ProfilePath = movieCast.Cast.ProfilePath});
+                movieDetailsResponseModel.Casts.Add(new CastModel{Id = movieCast.Cast.Id, Name = movieCast.Cast.Name, 
+                    ProfilePath = movieCast.Cast.ProfilePath, Character = movieCast.Character, Gender = movieCast.Cast.Gender,
+                    TmdbUrl = movieCast.Cast.TmdbUrl
+                });
             }
-            
+
+            foreach (var trailer in movie.Trailers)
+            {
+                movieDetailsResponseModel.Trailers.Add(new TrailerModel
+                {
+                    Id = trailer.Id, Name = trailer.Name,
+                    TrailerUrl = trailer.TrailerUrl, MovieId = trailer.MovieId
+                });
+            }
 
             return movieDetailsResponseModel;
 

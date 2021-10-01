@@ -19,7 +19,7 @@ namespace MovieShopMVC.Controllers
         {
             _movieService = movieService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // it will look inside view folder => folder name with same name as control name and
             // look for view with same name as action method name.
@@ -29,7 +29,7 @@ namespace MovieShopMVC.Controllers
             // var movieService = new MovieService();
             // var movies = movieService.Get30HighestGrossingMovies();
             // models
-            var movies = _movieService.Get30HighestGrossingMovies();
+            var movies = await _movieService.Get30HighestGrossingMovies();
             return View(movies);
         }
 
