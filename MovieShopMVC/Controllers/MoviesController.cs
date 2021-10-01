@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationCore.Models;
@@ -20,9 +21,9 @@ namespace MovieShopMVC.Controllers
             return View(movies);
         }*/
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var movieDetailsResponseModel = _movieService.GetMovieById(id);
+            var movieDetailsResponseModel = await _movieService.GetMovieById(id);
             return View(movieDetailsResponseModel);
         }
         

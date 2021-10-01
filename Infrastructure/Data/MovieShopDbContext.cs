@@ -30,6 +30,9 @@ namespace Infrastructure.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
 
         //Fluent API way of modeling the database
         //override onModelCreating+Tab
@@ -45,6 +48,34 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Review>(ConfigureReview);
             modelBuilder.Entity<Favorite>(ConfigureFavorite);
             modelBuilder.Entity<User>(ConfigureUser);
+            modelBuilder.Entity<UserRole>(ConfiguteUserRole);
+            modelBuilder.Entity<Role>(ConfigureRole);
+            modelBuilder.Entity<Purchase>(ConfigurePurchase);
+        }
+
+        private void ConfigurePurchase(EntityTypeBuilder<Purchase> builder)
+        {
+            builder.ToTable("Purchase");
+            builder.HasKey(p => new {p.UserId, p.MovieId});
+            builder.Property(p => p.TotalPrice).HasColumnType("decimal(18, 2)");
+            builder.Property(p=> p.PurchaseDateTime).HasDefaultValueSql("getdate()");
+            builder.HasOne(p=>p.Movies).WithMany(m=> m.Purchases).HasForeignKey(p=> p.MovieId);
+            builder.HasOne(p => p.Users).WithMany(u => u.Purchases).HasForeignKey(p => p.UserId);
+        }
+
+        private void ConfigureRole(EntityTypeBuilder<Role> builder)
+        {
+            builder.ToTable("Role");
+            builder.HasKey(r => r.Id);
+            builder.Property(r => r.Name).HasMaxLength(20);
+        }
+
+        private void ConfiguteUserRole(EntityTypeBuilder<UserRole> builder)
+        {
+            builder.ToTable("UserRole");
+            builder.HasKey(ur => new {ur.RoleId, ur.UserId});
+            builder.HasOne(ur => ur.User).WithMany(u => u.Roles).HasForeignKey(ur => ur.UserId);
+            builder.HasOne(ur => ur.Role).WithMany(r => r.Users).HasForeignKey(ur => ur.RoleId);
         }
 
         private void ConfigureUser(EntityTypeBuilder<User> builder)
@@ -103,8 +134,8 @@ namespace Infrastructure.Data
             builder.ToTable("MovieCast");
             builder.HasKey(mc => new {mc.MovieId, mc.CastId});
             builder.Property(mc => mc.Character).HasMaxLength(450);
-            builder.HasOne(m => m.Movie).WithMany(m => m.Casts).HasForeignKey(mc => mc.MovieId);
-            builder.HasOne(m => m.Cast).WithMany(m => m.Movies).HasForeignKey(mc => mc.CastId);
+            builder.HasOne(mc => mc.Movie).WithMany(m => m.Casts).HasForeignKey(mc => mc.MovieId);
+            builder.HasOne(mc => mc.Cast).WithMany(c => c.Movies).HasForeignKey(mc => mc.CastId);
         }
 
         private void ConfigureCast(EntityTypeBuilder<Cast> builder)
