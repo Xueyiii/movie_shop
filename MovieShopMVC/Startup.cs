@@ -41,6 +41,11 @@ namespace MovieShopMVC
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            //services.AddScoped<IPurchaseService, PurchaseService>();
+            services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+            services.AddHttpContextAccessor();
             // 3 scopes: AddScoped, AddTransient, AddSingleton
 
             services.AddDbContext<MovieShopDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection")));

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ApplicationCore.Entities;
 using ApplicationCore.RepositoryInterfaces;
@@ -56,5 +57,6 @@ namespace Infrastructure.Repository
             var movies = _movieShopDbContext.Movies.Include(m => m.Genres).Where(m => m.Id == genreId).ToList();
             return movies;
         }
+        
     }
 }

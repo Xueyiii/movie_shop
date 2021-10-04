@@ -6,6 +6,12 @@ namespace ApplicationCore.Models
 {
     public class MovieDetailsResponseModel
     {
+        public MovieDetailsResponseModel()
+        {
+            Genres = new List<GenreModel>();
+            Casts = new List<CastModel>();
+            Trailers = new List<TrailerModel>();
+        }
         public int Id { get; set; }
         public string Title { get; set; }
         public string PosterUrl { get; set; }
