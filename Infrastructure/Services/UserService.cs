@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using ApplicationCore.Entities;
@@ -11,10 +12,14 @@ namespace Infrastructure.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IPurchaseRepository _purchaseRepository;
+        private readonly IFavoriteRepository _favoriteRepository;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IPurchaseRepository purchaseRepository, IFavoriteRepository favoriteRepository)
         {
             _userRepository = userRepository;
+            _purchaseRepository = purchaseRepository;
+            _favoriteRepository = favoriteRepository;
         }
         
         public async Task<UserRegisterResponseModel> RegisterUser(UserRegisterRequestModel requestModel)
@@ -89,6 +94,60 @@ namespace Infrastructure.Services
             return null;
 
         }
+
+        public async Task<IEnumerable<MovieCardResponseModel>> GetPurchaseMoviesByUser(int id)
+        {
+            var purchases = await _purchaseRepository.ListAsync(p => p.UserId == id);
+
+            if (purchases !=null)
+            {
+                return new List<MovieCardResponseModel>();
+            }
+
+            var movieCardResponseModel = new List<MovieCardResponseModel>();
+            foreach (var purchase in purchases)
+            {
+                movieCardResponseModel.Add(new MovieCardResponseModel
+                {
+                    Id = purchase.Movies.Id,
+                    PosterUrl = purchase.Movies.PosterUrl,
+                    Revenue = purchase.Movies.Revenue,
+                    Title = purchase.Movies.Title
+                });
+            }
+
+            return movieCardResponseModel;
+        }
+
+        public async Task<IEnumerable<MovieCardResponseModel>> GetFavoriteMoviesByUser(int id)
+        {
+            var favorites = await _favoriteRepository.ListAsync(f => f.UserId == id);
+
+            if (favorites !=null)
+            {
+                return new List<MovieCardResponseModel>();
+            }
+
+            var movieCardResponseModel = new List<MovieCardResponseModel>();
+            foreach (var favorite in favorites)
+            {
+                movieCardResponseModel.Add(new MovieCardResponseModel
+                {
+                    Id = favorite.Movie.Id,
+                    PosterUrl = favorite.Movie.PosterUrl,
+                    Revenue = favorite.Movie.Revenue,
+                    Title = favorite.Movie.Title
+                });
+            }
+
+            return movieCardResponseModel;
+        }
+
+        public async Task<IEnumerable<PurchaseRequestModel>> GetPurchaseDetailsByUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
 
         private string GenerateSalt()
         {

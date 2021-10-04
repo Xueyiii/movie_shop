@@ -50,7 +50,6 @@ namespace Infrastructure.Services
             movieDetailsResponseModel.Price = movie.Price;
             movieDetailsResponseModel.Budget = movie.Budget;
             
-            
             foreach (var movieGenre in movie.Genres)
             {
                 movieDetailsResponseModel.Genres.Add(new GenreModel{Id = movieGenre.Genre.Id, Name = movieGenre.Genre.Name});
@@ -90,6 +89,7 @@ namespace Infrastructure.Services
 
             return movieCardResponseModel;
         }
+        
     }
 }
 
