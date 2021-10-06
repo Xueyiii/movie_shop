@@ -30,4 +30,3 @@
 /Users/yangxueyi/Projects/movie_shop/Infrastructure/bin/Debug/net5.0/Infrastructure.runtimeconfig.json
 /Users/yangxueyi/Projects/movie_shop/Infrastructure/bin/Debug/net5.0/Infrastructure.runtimeconfig.dev.json
 /Users/yangxueyi/Projects/movie_shop/Infrastructure/obj/Debug/net5.0/Infrastructure.genruntimeconfig.cache
-/Users/yangxueyi/Projects/movie_shop/Infrastructure/obj/Debug/net5.0/Infrastructure.csproj.CopyComplete

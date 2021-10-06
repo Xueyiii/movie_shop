@@ -20,6 +20,7 @@ namespace MovieShopMVC.Controllers
         // showing list of movies user purchased
         // Filters
         [HttpGet]
+        // automatically check the user is authorize or not, HttpContext.user.identity is true
         [Authorize]
         public async Task<IActionResult> Purchases(int id)
         {
