@@ -86,7 +86,6 @@
 /Users/yangxueyi/Projects/movie_shop/MovieShopMVC/obj/Debug/net5.0/MovieShopMVC.pdb
 /Users/yangxueyi/Projects/movie_shop/MovieShopMVC/obj/Debug/net5.0/MovieShopMVC.genruntimeconfig.cache
 /Users/yangxueyi/Projects/movie_shop/MovieShopMVC/obj/Debug/net5.0/Razor/Views/Movies/GetTopRevenueMovies.cshtml.g.cs
-/Users/yangxueyi/Projects/movie_shop/MovieShopMVC/bin/Debug/net5.0/MovieShopMVC
 /Users/yangxueyi/Projects/movie_shop/MovieShopMVC/bin/Debug/net5.0/Humanizer.dll
 /Users/yangxueyi/Projects/movie_shop/MovieShopMVC/bin/Debug/net5.0/Microsoft.EntityFrameworkCore.dll
 /Users/yangxueyi/Projects/movie_shop/MovieShopMVC/bin/Debug/net5.0/Microsoft.EntityFrameworkCore.Abstractions.dll
