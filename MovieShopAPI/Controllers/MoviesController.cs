@@ -38,5 +38,14 @@ namespace MovieShopAPI.Controllers
             // .NET Core 3.1 or less = JSON.NET => 3rd party library.
             // New: => System.Text.Json 
         }
+        
+        [HttpGet]
+        [Route("{id:int}", Name = "GetMovie")]
+        public async Task<IActionResult> GetMovie(int id)
+        {
+            var movie = await _movieService.GetMovieById(id);
+            return Ok(movie);
+        }
+
     }
 }

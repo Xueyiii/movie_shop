@@ -1,1 +1,140 @@
-<p>movie-details works!</p>
+
+<div class="bg-image bg-dark" style="background-image: url(movie.BackdropUrl)">
+
+    <div class="row">
+        <div class="col-md-3 offset-2">
+
+            
+            <div>
+                <img src="{{movie.posterUrl}}" class="card-img-top"/>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <h1 class="text-white">
+                        {{ movie.title}}
+                    </h1>
+                    <small class="text-muted"> {{movie.tagline}} </small>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-4 text-secondary font-weight-bold mt-2">
+                    {{movie.runTime}} m | {{movie.releaseDate}}
+                </div>
+                <div class="col-8">
+                    Genre
+
+                    <div *ngFor="let genre of movie.genres">
+                        <div {{genre.name}}></div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4 mt-3">
+                    <h4>
+                        <span class="badge badge-warning">
+                            {{movie.rating}}
+                        </span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-light mt-2">
+                    {{movie.overview}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2 mt-4 offset-1 bg-dark">
+            <ul class="list-group">
+                <li class="list-group-item bg-dark">
+                    <button type="button"
+                            class="btn btn-outline-light btn-lg btn-block btn-sm">
+                        <i class="far fa-edit mr-1"></i>
+                        REVIEW
+                    </button>
+                </li>
+                <li class="list-group-item bg-dark">
+                    <button type="button"
+                            class="btn btn-outline-light btn-lg btn-block btn-sm">
+                        <i class="fas fa-play mr-1"></i> BUY {{movie.price}}
+                    </button>
+                </li>
+
+                <!-- <li class="list-group-item">
+                    <a class="btn btn-light btn-lg btn-block btn-sm" asp-controller="User" asp-action="BuyMovie">
+                        BUY {{movie.price}}
+                    </a>
+
+                    <a class="btn btn-light btn-lg btn-block btn-sm" asp-route-id="@Model.Id" asp-controller="User" asp-action="BuyMovie">
+                        WATCH MOVIE
+                    </a>
+                </li> -->
+            </ul>
+        </div> 
+
+    </div>
+</div>
+
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-4">
+          <h5 class="mb-3">MOVIE FACT</h5>
+          <ul class="list-group">
+            <li class="list-group-item">
+              Release Date
+              <span class="badge badge-pill badge-dark">
+                {{movie.releaseDate}}
+              </span>
+            </li>
+            <li class="list-group-item">
+              Run Time
+              <span class="badge badge-pill badge-dark">
+                {{movie.runTime}}
+              </span>
+            </li>
+            <li class="list-group-item">
+              Box Office
+              <span class="badge badge-pill badge-dark">
+                {{movie.revenue}}
+              </span>
+            </li>
+            <li class="list-group-item">
+              Budget
+              <span class="badge badge-pill badge-dark">
+                {{movie.budget}}
+              </span>
+            </li>
+          </ul>
+          
+          <h5 class="mt-lg-5">TRAILERS</h5>
+          <button asp-area="" type="button" class="btn btn-light btn-block btn-sm">
+            <i class="far fa-edit"></i>
+            {{movie.title}}
+          </button>
+        </div>
+    
+      <div class="col ml-lg-5">
+        <h5>CAST</h5>
+        <!-- <table>
+          
+          <tr>
+             <td>
+               <img src= "{{movie.casts.}}"  "@cast.ProfilePath " alt="@cast.Name" class="rounded-circle mr-5 ml-lg-4" width="50" />
+             </td>
+             <td>@cast.Name</td>
+             <td>@cast.Character</td>
+           </tr>
+          
+        </table> -->
+      </div> 
+    </div>
+  </div>
