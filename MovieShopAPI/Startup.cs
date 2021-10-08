@@ -24,6 +24,7 @@ namespace MovieShopAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -58,6 +59,13 @@ namespace MovieShopAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MovieShopAPI V1"));
             }
+
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins(Configuration.GetValue<string>("clientSPAUrl")).AllowAnyHeader()
+                    .AllowAnyMethod().AllowCredentials();
+            });
+
 
             app.UseHttpsRedirection();
 

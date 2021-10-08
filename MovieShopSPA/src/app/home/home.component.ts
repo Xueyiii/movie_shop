@@ -1,4 +1,9 @@
+
+
 import { Component, OnInit } from '@angular/core';
+import { MovieService } from '../core/services/movie.service';
+import { MovieCard } from '../shared/models/movieCard';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +12,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  movieCards!: MovieCard[];
+
+  constructor(private movieServive: MovieService) { }
 
   ngOnInit(): void {
+    // to call our API
+    this.movieServive.getTopGrossingMovies()
+      .subscribe(
+        m => {
+          this.movieCards = m;
+          console.log('inside home component init method')
+        }
+      )
+
   }
 
 }
+
+// Angular Lifecycle hooks*****
