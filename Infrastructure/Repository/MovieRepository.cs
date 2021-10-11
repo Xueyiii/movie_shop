@@ -52,11 +52,74 @@ namespace Infrastructure.Repository
             return movies;
         }
 
-        public IEnumerable<Movie> GetMoviesByGenre(int genreId)
+        public async Task<IEnumerable<Movie>> GetMoviesByGenre(int genreId, int pageSize = 30, int pageIndex = 1)
         {
-            var movies = _movieShopDbContext.Movies.Include(m => m.Genres).Where(m => m.Id == genreId).ToList();
+            var totalMoviesCountByGenre =
+                await _dbContext.MovieGenres.Where(g => g.GenreId == genreId).CountAsync();
+            if (totalMoviesCountByGenre == 0) throw new Exception("NO Movies found for this genre");
+            
+            var movies = await _dbContext.MovieGenres.Where(mg => mg.GenreId == genreId).Include(mg=> mg.Movie)
+                .Select(mg=> new Movie
+                {
+                    Id = mg.GenreId,
+                    PosterUrl = mg.Movie.PosterUrl,
+                    Title = mg.Movie.Title,
+                    ReleaseDate = mg.Movie.ReleaseDate
+                })
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
             return movies;
         }
-        
+
+        public async Task<IEnumerable<Movie>> GetTopRatedMovies()
+        {
+            var moveis = await _dbContext.Reviews.Include(r => r.Movie).GroupBy(r => new
+            {
+                Id = r.MovieId,
+                r.Movie.PosterUrl,
+                r.Movie.Title,
+                r.Movie.ReleaseDate
+            }).OrderByDescending(g => g.Average(r => r.Rating)).Select(m => new Movie
+                {
+                    Id = m.Key.Id,
+                    PosterUrl = m.Key.PosterUrl,
+                    Title = m.Key.Title,
+                    ReleaseDate = m.Key.ReleaseDate,
+                    Rating = m.Average(r => r.Rating)
+                })
+                .Take(50).ToListAsync();
+
+            return moveis;
+        }
+
+        public async Task<IEnumerable<Review>> GetMovieReviews(int id, int pageSize = 30, int page = 1)
+        {
+            var reviews = await _dbContext.Reviews.Where(r => r.MovieId == id).Include(r => r.User).Select(r =>
+                new Review
+                {
+                    UserId = r.UserId,
+                    MovieId = r.MovieId,
+                    ReviewText = r.ReviewText,
+                    Rating = r.Rating,
+                    Movie = new Movie
+                    {
+                        Id = r.Movie.Id,
+                        Title = r.Movie.Title
+                    },
+                    User = new User
+                    {
+                        Id = r.User.Id,
+                        FirstName = r.User.FirstName,
+                        LastName = r.User.LastName
+                    }
+                }).Skip(pageSize * (page - 1)).Take(pageSize).ToListAsync();
+            return reviews;
+        }
+
+        public async Task<IEnumerable<Movie>> GetAllMovies(int pageSize = 30, int page = 1)
+        {
+            var movies = await _dbContext.Movies.Skip(pageSize * (page - 1)).Take(pageSize)
+                .ToListAsync();
+            return movies;
+        }
     }
 }

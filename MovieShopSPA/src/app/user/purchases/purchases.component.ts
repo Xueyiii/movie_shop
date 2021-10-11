@@ -1,3 +1,5 @@
+import { UserService } from './../../core/services/user.service';
+import { Purchases } from './../../shared/models/purchase';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchasesComponent implements OnInit {
 
-  constructor() { }
+  purchases!:Purchases;
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getPurchaseMovies().subscribe(
+      p=> {
+        this.purchases = p
+      }
+    )
   }
+
+
 
 }

@@ -21,5 +21,14 @@ namespace Infrastructure.Repository
             var purchases = await _dbContext.Purchases.Include(p => p.Movies).Where(filter).ToListAsync();
             return purchases;
         }
+
+        public async Task<IEnumerable<Purchase>> GetPurchaseMoviesByUserId(int userId, int pageSize = 30, int pageIndex = 1)
+        {
+            var purchases = await _dbContext.Purchases.Include(p=> p.Movies).
+                Where(p=> p.UserId == userId)
+                .OrderByDescending(p => p.PurchaseDateTime).
+                Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            return purchases;
+        }
     }
 }

@@ -26,8 +26,8 @@ namespace MovieShopMVC.Controllers
         {
             // call the User Service to get movies purchased by user, and send the data to the view, and use the existing MovieCard partial View
             var userId = _currentUserService.UserId;
-            var movieCardReponseModel = await _userService.GetPurchaseMoviesByUser(userId);
-            return View(movieCardReponseModel);
+            var purchaseResponseModel = await _userService.GetPurchaseMoviesByUser(userId);
+            return View(purchaseResponseModel);
         }
         
         [HttpGet]
@@ -53,20 +53,20 @@ namespace MovieShopMVC.Controllers
             return View();
         }
 
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> Edit()
-        {
-            var userId = _currentUserService.UserId;
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Edit(UserEditRequestModel model)
-        {
-            return View();
-        }
+        // [Authorize]
+        // [HttpGet]
+        // public async Task<IActionResult> Edit()
+        // {
+        //     var userId = _currentUserService.UserId;
+        //     return View();
+        // }
+        //
+        // [Authorize]
+        // [HttpPost]
+        // public async Task<IActionResult> Edit(UserEditRequestModel model)
+        // {
+        //     return View();
+        // }
         
     }
 }

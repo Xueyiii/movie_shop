@@ -7,6 +7,7 @@ namespace ApplicationCore.Models
         public PurchaseRequestModel()
         {
             PurchaseDateTime = DateTime.Now;
+            PurchaseNumber = Guid.NewGuid();
         }
         public int UserId { get; set; }
         public Guid PurchaseNumber { get; set; }

@@ -1,10 +1,8 @@
 
-<div class="bg-image bg-dark" style="background-image: url(movie.BackdropUrl)">
-
+<div class="bg-image bg-dark" [ngStyle]="{'background-image': 'url({{movie.backdropUrl}})'}">
     <div class="row">
         <div class="col-md-3 offset-2">
 
-            
             <div>
                 <img src="{{movie.posterUrl}}" class="card-img-top"/>
             </div>
@@ -23,14 +21,12 @@
 
             <div class="row">
                 <div class="col-4 text-secondary font-weight-bold mt-2">
-                    {{movie.runTime}} m | {{movie.releaseDate}}
+                    {{movie.runTime}} m | {{movie.releaseDate | date}}
                 </div>
-                <div class="col-8">
-                    Genre
-
-                    <div *ngFor="let genre of movie.genres">
-                        <div {{genre.name}}></div>
-                    </div>
+                <div class="col-8 badge badge-pill badge-dark ml-1">
+                    <span *ngFor="let genre of movie.genres">
+                        <span> {{genre.name}} </span>
+                    </span>
                     
                 </div>
             </div>
@@ -104,13 +100,13 @@
             <li class="list-group-item">
               Box Office
               <span class="badge badge-pill badge-dark">
-                {{movie.revenue}}
+                {{movie.revenue|currency}}
               </span>
             </li>
             <li class="list-group-item">
               Budget
               <span class="badge badge-pill badge-dark">
-                {{movie.budget}}
+                {{movie.budget|currency}}
               </span>
             </li>
           </ul>
@@ -122,19 +118,20 @@
           </button>
         </div>
     
-      <div class="col ml-lg-5">
+      <div class="col offset-1">
         <h5>CAST</h5>
-        <!-- <table>
+        <table class="table">
+          <tbody *ngFor="let cast of movie.casts">
+            <tr>
+              <td>
+                <img [src]= "cast.profilePath" alt="cast.Name" class="rounded-circle" width="50" />
+               </td>
+               <td>{{cast.name}}</td>
+               <td>{{cast.character}}</td>
+             </tr>
+          </tbody>
           
-          <tr>
-             <td>
-               <img src= "{{movie.casts.}}"  "@cast.ProfilePath " alt="@cast.Name" class="rounded-circle mr-5 ml-lg-4" width="50" />
-             </td>
-             <td>@cast.Name</td>
-             <td>@cast.Character</td>
-           </tr>
-          
-        </table> -->
+        </table>
       </div> 
     </div>
   </div>

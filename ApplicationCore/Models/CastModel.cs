@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ApplicationCore.Models
 {
     public class CastModel
@@ -8,6 +10,8 @@ namespace ApplicationCore.Models
         public string TmdbUrl { get; set; }
         public string ProfilePath { get; set; }
         public string Character { get; set; }
+        
+        public IEnumerable<MovieCardResponseModel> Movies { get; set; }
 
     }
 }

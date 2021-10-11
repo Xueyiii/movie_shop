@@ -36,6 +36,12 @@ namespace Infrastructure.Repository
             return data;
         }
 
+        public async Task<bool> GetExistsAsync(Expression<Func<T, bool>> filter = null)
+        {
+            if (filter == null) return false;
+            return await _dbContext.Set<T>().Where(filter).AnyAsync();
+        }
+
         public virtual async Task<int> GetCountAsync(Expression<Func<T, bool>> filter = null)
         {
             if (filter != null)
