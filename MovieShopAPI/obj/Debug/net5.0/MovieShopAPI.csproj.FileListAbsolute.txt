@@ -138,4 +138,5 @@
 /Users/yangxueyi/Projects/movie_shop/MovieShopAPI/bin/Debug/net5.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/yangxueyi/Projects/movie_shop/MovieShopAPI/bin/Debug/net5.0/runtimes/win-arm/lib/net5.0/dotnet-aspnet-codegenerator-design.exe
 /Users/yangxueyi/Projects/movie_shop/MovieShopAPI/bin/Debug/net5.0/runtimes/win-arm64/lib/net5.0/dotnet-aspnet-codegenerator-design.exe
+/Users/yangxueyi/Projects/movie_shop/MovieShopAPI/bin/Debug/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/yangxueyi/Projects/movie_shop/MovieShopAPI/obj/Debug/net5.0/MovieShopAPI.csproj.CopyComplete

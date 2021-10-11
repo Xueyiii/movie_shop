@@ -6,6 +6,6 @@ namespace ApplicationCore.RepositoryInterfaces
 {
     public interface IPurchaseRepository: IAsyncRepository<Purchase>
     {
-        // Task<IEnumerable<Purchase>> GetPurchaseMoviesByUserId(int id);
+        Task<IEnumerable<Purchase>> GetPurchaseMoviesByUserId(int userId, int pageSize = 30, int pageIndex = 1);
     }
 }

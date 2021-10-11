@@ -1,3 +1,5 @@
+import { UserService } from './../../core/services/user.service';
+import { Favorite } from './../../shared/models/favorite';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritesComponent implements OnInit {
 
-  constructor() { }
+  favorite!: Favorite;
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getFavoriteMovies().subscribe(
+      f=> {
+        this.favorite = f
+      }
+    )
+
   }
 
 }

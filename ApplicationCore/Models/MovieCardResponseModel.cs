@@ -7,5 +7,6 @@ namespace ApplicationCore.Models
         public string PosterUrl { get; set; }
         public string Title { get; set; }
         public decimal? Revenue { get; set; }
+        public DateTime ReleaseDate { get; set; }
     }
 }

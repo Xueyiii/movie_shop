@@ -76,9 +76,9 @@ namespace Infrastructure.Services
 
         }
 
-        public IEnumerable<MovieCardResponseModel> GetMoviesByGenre(int genreId)
+        public async Task<IEnumerable<MovieCardResponseModel>> GetMoviesByGenre(int genreId, int pageSize = 30, int pageIndex = 1)
         {
-            var movies = _movieRepository.GetMoviesByGenre(genreId);
+            var movies = await _movieRepository.GetMoviesByGenre(genreId);
             var movieCardResponseModel = new List<MovieCardResponseModel>();
             
             foreach (var movie in movies)
@@ -89,7 +89,52 @@ namespace Infrastructure.Services
 
             return movieCardResponseModel;
         }
-        
+
+        public async Task<IEnumerable<MovieCardResponseModel>> GetTopRatedMovies()
+        {
+            var movies = await _movieRepository.GetTopRatedMovies();
+
+            var movieCardResponseModel = new List<MovieCardResponseModel>();
+            
+            foreach (var movie in movies)
+            {
+                movieCardResponseModel.Add(new MovieCardResponseModel
+                {
+                    Id = movie.Id, PosterUrl = movie.PosterUrl, Title = movie.Title
+                });
+            }
+            
+            return movieCardResponseModel;
+        }
+
+        public async Task<IEnumerable<ReviewModel>> GetReviewById(int id, int pageSize = 30, int page = 1)
+        {
+            var reviews = await _movieRepository.GetMovieReviews(id, pageSize, page);
+            var reviewsModel = new List<ReviewModel>();
+
+            foreach (var review in reviews)
+            {
+                reviewsModel.Add(new ReviewModel
+                {
+                    MovieId = review.MovieId, UserId = review.UserId, Rating = review.Rating,
+                    ReviewText = review.ReviewText, Name = review.User.FirstName + " " + review.User.LastName
+                });
+            }
+            return reviewsModel;
+        }
+
+        public async Task<IEnumerable<MovieCardResponseModel>> GetMoviesByPagination(int pageSize = 30, int pageIndex = 1, string title = "")
+        {
+            var movies = await _movieRepository.GetAllMovies(pageSize, pageIndex);
+            var movieCardResponseModel = new List<MovieCardResponseModel>();
+
+            foreach (var movie in movies)
+            {
+                movieCardResponseModel.Add(new MovieCardResponseModel { Id = movie.Id, PosterUrl = movie.PosterUrl, Title = movie.Title});
+            }
+
+            return movieCardResponseModel;
+        }
     }
 }
 

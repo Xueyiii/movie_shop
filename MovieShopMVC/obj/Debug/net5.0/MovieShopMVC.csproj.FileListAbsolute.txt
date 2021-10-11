@@ -225,3 +225,4 @@
 /Users/yangxueyi/Projects/movie_shop/MovieShopMVC/obj/Debug/net5.0/Razor/Views/User/Purchases.cshtml.g.cs
 /Users/yangxueyi/Projects/movie_shop/MovieShopMVC/obj/Debug/net5.0/Razor/Views/User/Details.cshtml.g.cs
 /Users/yangxueyi/Projects/movie_shop/MovieShopMVC/obj/Debug/net5.0/Razor/Views/User/Favorites.cshtml.g.cs
+/Users/yangxueyi/Projects/movie_shop/MovieShopMVC/bin/Debug/net5.0/MovieShopMVC

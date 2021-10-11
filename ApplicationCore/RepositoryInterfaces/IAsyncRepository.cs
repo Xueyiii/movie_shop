@@ -13,6 +13,7 @@ namespace ApplicationCore.RepositoryInterfaces
         Task<IEnumerable<T>> ListAllAsync();
 
         Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> filter);
+        Task<bool> GetExistsAsync(Expression<Func<T, bool>> filter = null);
 
         Task<int> GetCountAsync(Expression<Func<T, bool>> filter = null);
 
