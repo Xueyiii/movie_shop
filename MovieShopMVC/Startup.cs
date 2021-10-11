@@ -45,6 +45,7 @@ namespace MovieShopMVC
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             //services.AddScoped<IPurchaseService, PurchaseService>();
             services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddHttpContextAccessor();
             // 3 scopes: AddScoped, AddTransient, AddSingleton
 
